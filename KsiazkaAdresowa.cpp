@@ -1,7 +1,10 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "KsiazkaAdresowa.h"
 
 KsiazkaAdresowa::KsiazkaAdresowa() {
+    nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
 }
 
 KsiazkaAdresowa::~KsiazkaAdresowa() {
@@ -47,11 +50,56 @@ std::string KsiazkaAdresowa::wczytajLinie() {
     return wejscie;
 }
 
+void KsiazkaAdresowa::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
+    std::fstream plikTekstowy;
+    std::string liniaZDanymiUzytkownika = "";
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::app);
+
+    if (plikTekstowy.good() == true) {
+        liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
+
+        if (czyPlikJestPusty(plikTekstowy) == true) {
+            plikTekstowy << liniaZDanymiUzytkownika;
+        }
+        else {
+            plikTekstowy << std::endl << liniaZDanymiUzytkownika ;
+        }
+    }
+    else
+        std::cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << std::endl;
+    plikTekstowy.close();
+}
+
+std::string KsiazkaAdresowa::konwersjaIntNaString(int liczba) {
+    std::ostringstream ss;
+    ss << liczba;
+    std::string str = ss.str();
+    return str;
+}
+
+std::string KsiazkaAdresowa::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
+    std::string liniaZDanymiUzytkownika = "";
+
+    liniaZDanymiUzytkownika += konwersjaIntNaString(uzytkownik.pobierzId()) + '|';
+    liniaZDanymiUzytkownika += uzytkownik.pobierzLogin() + '|';
+    liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
+
+    return liniaZDanymiUzytkownika;
+}
+
+bool KsiazkaAdresowa::czyPlikJestPusty(std::fstream &plikTekstowy) {
+    plikTekstowy.seekg(0, std::ios::end);
+    if (plikTekstowy.tellg() == 0)
+        return true;
+    else
+        return false;
+}
+
 void KsiazkaAdresowa::rejestracjaUzytkownika() {
     Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();
 
     uzytkownicy.push_back(uzytkownik);
-    //dopiszUzytkownikaDoPliku(uzytkownik);
+    dopiszUzytkownikaDoPliku(uzytkownik);
 
     std::cout << std::endl << "Konto zalozono pomyslnie" << std::endl << std::endl;
     system("pause");
