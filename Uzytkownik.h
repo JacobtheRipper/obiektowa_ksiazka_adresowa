@@ -1,3 +1,6 @@
+#ifndef UZYTKOWNIK_H
+#define UZYTKOWNIK_H
+
 #include<string>
 
 class Uzytkownik {
@@ -17,3 +20,5 @@ public:
     std::string pobierzLogin();
     std::string pobierzHaslo();
 };
+
+#endif
