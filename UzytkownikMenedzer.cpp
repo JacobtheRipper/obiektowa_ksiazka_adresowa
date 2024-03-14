@@ -2,6 +2,7 @@
 #include "UzytkownikMenedzer.h"
 
 UzytkownikMenedzer::UzytkownikMenedzer() {
+    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
 
 UzytkownikMenedzer::~UzytkownikMenedzer() {
