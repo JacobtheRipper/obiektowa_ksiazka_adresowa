@@ -3,8 +3,7 @@
 #include "PlikZUzytkownikami.h"
 #include "MetodyPomocnicze.h"
 
-PlikZUzytkownikami::PlikZUzytkownikami() {
-    nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
+PlikZUzytkownikami::PlikZUzytkownikami() : nazwaPlikuZUzytkownikami("Uzytkownicy.txt") {
 }
 
 PlikZUzytkownikami::~PlikZUzytkownikami() {
