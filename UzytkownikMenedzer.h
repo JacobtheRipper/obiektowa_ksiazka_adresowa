@@ -15,7 +15,7 @@ private:
     bool czyIstniejeLogin(std::string login);
     std::string wczytajLinie();
 public:
-    UzytkownikMenedzer();
+    UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami);
     ~UzytkownikMenedzer();
     void rejestracjaUzytkownika();
     int logowanieUzytkownika();

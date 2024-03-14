@@ -1,7 +1,7 @@
 #include <iostream>
 #include "UzytkownikMenedzer.h"
 
-UzytkownikMenedzer::UzytkownikMenedzer() {
+UzytkownikMenedzer::UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
 

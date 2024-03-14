@@ -10,7 +10,7 @@ private:
     int idUsunietegoAdresata;
     UzytkownikMenedzer uzytkownikMenedzer;
 public:
-    KsiazkaAdresowa();
+    KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami);
     ~KsiazkaAdresowa();
     void rejestracjaUzytkownika();
     void wypiszWszystkichUzytkownikow();
