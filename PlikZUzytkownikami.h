@@ -9,8 +9,7 @@
 class PlikZUzytkownikami {
 private:
     std::string nazwaPlikuZUzytkownikami;
-    std::fstream plikTekstowy;
-    bool czyPlikJestPusty();
+    bool czyPlikJestPusty(std::fstream &plikTekstowy);
     std::string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
     Uzytkownik pobierzDaneUzytkownika(std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 public:
