@@ -28,6 +28,25 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     plikTekstowy.close();
 }
 
+std::vector<Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
+    Uzytkownik uzytkownik;
+    std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
+    std::vector<Uzytkownik> uzytkownicy;
+
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::in);
+
+    if (plikTekstowy.good() == true) {
+        while (getline(plikTekstowy, daneJednegoUzytkownikaOddzielonePionowymiKreskami)) {
+            uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+            uzytkownicy.push_back(uzytkownik);
+        }
+    }
+
+    plikTekstowy.close();
+
+    return uzytkownicy;
+}
+
 bool PlikZUzytkownikami::czyPlikJestPusty() {
     plikTekstowy.seekg(0, std::ios::end);
     if (plikTekstowy.tellg() == 0)
@@ -44,4 +63,32 @@ std::string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPio
     liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
 
     return liniaZDanymiUzytkownika;
+}
+
+Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
+    Uzytkownik uzytkownik;
+    std::string pojedynczaDanaUzytkownika = "";
+    int numerPojedynczejDanejUzytkownika = 1;
+
+    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++) {
+        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|') {
+            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
+        }
+        else {
+            switch(numerPojedynczejDanejUzytkownika) {
+            case 1:
+                uzytkownik.ustawId(atoi(pojedynczaDanaUzytkownika.c_str()));
+                break;
+            case 2:
+                uzytkownik.ustawLogin(pojedynczaDanaUzytkownika);
+                break;
+            case 3:
+                uzytkownik.ustawHaslo(pojedynczaDanaUzytkownika);
+                break;
+            }
+            pojedynczaDanaUzytkownika = "";
+            numerPojedynczejDanejUzytkownika++;
+        }
+    }
+    return uzytkownik;
 }
