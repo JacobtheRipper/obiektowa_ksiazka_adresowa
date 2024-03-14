@@ -2,9 +2,10 @@
 #include "KsiazkaAdresowa.h"
 
 int main() {
-    KsiazkaAdresowa ksiazkaAdresowa;
+    KsiazkaAdresowa ksiazkaAdresowa("Users.txt");
 
     std::cout << "\nWitaj uzytkowniku!" << std::endl;
+    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
     ksiazkaAdresowa.rejestracjaUzytkownika();
     ksiazkaAdresowa.rejestracjaUzytkownika();
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();

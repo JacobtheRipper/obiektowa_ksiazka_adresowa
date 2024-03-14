@@ -1,6 +1,6 @@
 #include "KsiazkaAdresowa.h"
 
-KsiazkaAdresowa::KsiazkaAdresowa() {
+KsiazkaAdresowa::KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami) : uzytkownikMenedzer(nazwaPlikuZUzytkownikami) {
 }
 
 KsiazkaAdresowa::~KsiazkaAdresowa() {

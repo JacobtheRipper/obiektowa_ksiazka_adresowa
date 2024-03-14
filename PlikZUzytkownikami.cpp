@@ -1,9 +1,9 @@
 #include <iostream>
+#include <fstream>
 #include "PlikZUzytkownikami.h"
 #include "MetodyPomocnicze.h"
 
-PlikZUzytkownikami::PlikZUzytkownikami() {
-    nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
+PlikZUzytkownikami::PlikZUzytkownikami(std::string nazwaPlikuZUzytkownikami) : nazwaPlikuZUzytkownikami(nazwaPlikuZUzytkownikami) {
 }
 
 PlikZUzytkownikami::~PlikZUzytkownikami() {
@@ -11,12 +11,14 @@ PlikZUzytkownikami::~PlikZUzytkownikami() {
 
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     std::string liniaZDanymiUzytkownika = "";
+    std::fstream plikTekstowy;
+
     plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::app);
 
     if (plikTekstowy.good() == true) {
         liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
 
-        if (czyPlikJestPusty() == true) {
+        if (czyPlikJestPusty(plikTekstowy) == true) {
             plikTekstowy << liniaZDanymiUzytkownika;
         }
         else {
@@ -32,6 +34,7 @@ std::vector<Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
     Uzytkownik uzytkownik;
     std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
     std::vector<Uzytkownik> uzytkownicy;
+    std::fstream plikTekstowy;
 
     plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::in);
 
@@ -47,7 +50,7 @@ std::vector<Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
     return uzytkownicy;
 }
 
-bool PlikZUzytkownikami::czyPlikJestPusty() {
+bool PlikZUzytkownikami::czyPlikJestPusty(std::fstream &plikTekstowy) {
     plikTekstowy.seekg(0, std::ios::end);
     if (plikTekstowy.tellg() == 0)
         return true;
