@@ -13,6 +13,7 @@ public:
     KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami);
     ~KsiazkaAdresowa();
     void rejestracjaUzytkownika();
+    void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
 };
 
