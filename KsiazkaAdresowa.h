@@ -3,18 +3,23 @@
 
 #include<vector>
 #include "UzytkownikMenedzer.h"
+#include "InterfejsUzytkownika.h"
 
 class KsiazkaAdresowa {
 private:
     int idOstatniegoAdresata;
     int idUsunietegoAdresata;
     UzytkownikMenedzer uzytkownikMenedzer;
+    InterfejsUzytkownika interfejsUzytkownika;
+    char wybierzOpcjeZMenuGlownego();
+    char wybierzOpcjeZMenuUzytkownika();
 public:
     KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami);
     ~KsiazkaAdresowa();
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
+    void uruchomPetleGlownaProgramu();
 };
 
 #endif

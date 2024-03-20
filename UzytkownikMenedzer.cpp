@@ -3,6 +3,7 @@
 
 UzytkownikMenedzer::UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+    idZalogowanegoUzytkownika = 0;
 }
 
 UzytkownikMenedzer::~UzytkownikMenedzer() {
