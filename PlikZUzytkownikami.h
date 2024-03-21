@@ -17,6 +17,7 @@ public:
     ~PlikZUzytkownikami();
     void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
     std::vector<Uzytkownik> wczytajUzytkownikowZPliku();
+    void zapiszWszystkichUzytkownikowDoPliku(std::vector <Uzytkownik> &uzytkownicy);
 };
 
 #endif

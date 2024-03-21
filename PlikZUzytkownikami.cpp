@@ -50,6 +50,32 @@ std::vector<Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
     return uzytkownicy;
 }
 
+void PlikZUzytkownikami::zapiszWszystkichUzytkownikowDoPliku(std::vector<Uzytkownik> &uzytkownicy) {
+    std::fstream plikTekstowy;
+    std::string liniaZDanymiUzytkownika = "";
+    std::vector<Uzytkownik>::iterator itrKoniec = --uzytkownicy.end();
+
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::out);
+
+    if (plikTekstowy.good() == true) {
+        for (std::vector<Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++) {
+            liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(*itr);
+
+            if (itr == itrKoniec) {
+               plikTekstowy << liniaZDanymiUzytkownika;
+            }
+            else {
+                plikTekstowy << liniaZDanymiUzytkownika << std::endl;
+            }
+            liniaZDanymiUzytkownika = "";
+        }
+    }
+    else {
+        std::cout << "Nie mozna otworzyc pliku " << nazwaPlikuZUzytkownikami << std::endl;
+    }
+    plikTekstowy.close();
+};
+
 bool PlikZUzytkownikami::czyPlikJestPusty(std::fstream &plikTekstowy) {
     plikTekstowy.seekg(0, std::ios::end);
     if (plikTekstowy.tellg() == 0)

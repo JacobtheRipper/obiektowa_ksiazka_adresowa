@@ -3,6 +3,7 @@
 
 UzytkownikMenedzer::UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+    idZalogowanegoUzytkownika = 0;
 }
 
 UzytkownikMenedzer::~UzytkownikMenedzer() {
@@ -59,6 +60,37 @@ void UzytkownikMenedzer::rejestracjaUzytkownika() {
 }
 
 int UzytkownikMenedzer::logowanieUzytkownika() {
+    Uzytkownik uzytkownik;
+    std::string login = "", haslo = "";
+
+    std::cout << std::endl << "Podaj login: ";
+    login = wczytajLinie();
+
+    std::vector <Uzytkownik>::iterator itr = uzytkownicy.begin();
+    while (itr != uzytkownicy.end())
+    {
+        if (itr -> pobierzLogin() == login)
+        {
+            for (int iloscProb = 3; iloscProb > 0; iloscProb--)
+            {
+                std::cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
+                haslo = wczytajLinie();
+
+                if (itr -> pobierzHaslo() == haslo)
+                {
+                    std::cout << std::endl << "Zalogowales sie." << std::endl << std::endl;
+                    std::system("pause");
+                    return itr -> pobierzId();
+                }
+            }
+            std::cout << "Wprowadzono 3 razy bledne haslo." << std::endl;
+            std::system("pause");
+            return 0;
+        }
+        itr++;
+    }
+    std::cout << "Nie ma uzytkownika z takim loginem" << std::endl << std::endl;
+    std::system("pause");
     return 0;
 }
 
@@ -68,4 +100,33 @@ void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
         std::cout << uzytkownicy[i].pobierzLogin() << std::endl;
         std::cout << uzytkownicy[i].pobierzHaslo() << std::endl;
     }
+}
+
+void UzytkownikMenedzer::wylogujUzytkownika() {
+    ustawIdZalogowanegoUzytkownika(0);
+};
+
+void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
+    std::string noweHaslo = "";
+    std::cout << "Podaj nowe haslo: ";
+    noweHaslo = wczytajLinie();
+
+    for (std::vector<Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++) {
+        if (itr -> pobierzId() == idZalogowanegoUzytkownika) {
+            itr -> ustawHaslo(noweHaslo);
+            std::cout << "Haslo zostalo zmienione." << std::endl << std::endl;
+            std::system("pause");
+        }
+    }
+    plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+
+void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
+    if (noweId >= 0) {
+        idZalogowanegoUzytkownika = noweId;
+    }
+}
+
+int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
+    return idZalogowanegoUzytkownika;
 }
