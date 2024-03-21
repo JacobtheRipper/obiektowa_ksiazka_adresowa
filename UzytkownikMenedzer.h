@@ -14,7 +14,6 @@ private:
     Uzytkownik podajDaneNowegoUzytkownika();
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin(std::string login);
-    std::string wczytajLinie();
 public:
     UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami);
     ~UzytkownikMenedzer();

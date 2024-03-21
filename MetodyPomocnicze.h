@@ -7,6 +7,8 @@ public:
     MetodyPomocnicze();
     ~MetodyPomocnicze();
     static std::string konwersjaIntNaString(int liczba);
+    static std::string wczytajLinie();
+    static std::string zamienPierwszaLitereNaDuzaAPozostaleNaMale(std::string tekst);
 };
 
 #endif

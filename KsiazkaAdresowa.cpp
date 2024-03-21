@@ -70,9 +70,10 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
 
             switch (wybor) {
             case '1':
-                std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
-                std::system("pause");
+                //std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
+                //std::system("pause");
                 //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
+                adresatMenedzer.dodajAdresata(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '2':
                 std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
@@ -85,9 +86,9 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
                 //wyszukajAdresatowPoNazwisku(adresaci);
                 break;
             case '4':
-                std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
-                std::system("pause");
-                //wyswietlWszystkichAdresatow(adresaci);
+                //std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
+                //std::system("pause");
+                adresatMenedzer.wypiszWszystkichAdresatow();
                 break;
             case '5':
                 std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;

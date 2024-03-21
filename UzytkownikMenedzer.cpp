@@ -1,5 +1,6 @@
 #include <iostream>
 #include "UzytkownikMenedzer.h"
+#include "MetodyPomocnicze.h"
 
 UzytkownikMenedzer::UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
@@ -16,11 +17,11 @@ Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika() {
 
     do {
         std::cout << std::endl << "Podaj login: ";
-        uzytkownik.ustawLogin(wczytajLinie());
+        uzytkownik.ustawLogin(MetodyPomocnicze::wczytajLinie());
     } while (czyIstniejeLogin(uzytkownik.pobierzLogin()) == true);
 
     std::cout << "Podaj haslo: ";
-    uzytkownik.ustawHaslo(wczytajLinie());
+    uzytkownik.ustawHaslo(MetodyPomocnicze::wczytajLinie());
 
     return uzytkownik;
 }
@@ -43,12 +44,6 @@ bool UzytkownikMenedzer::czyIstniejeLogin(std::string login) {
     return false;
 }
 
-std::string UzytkownikMenedzer::wczytajLinie() {
-    std::string wejscie = "";
-    std::getline(std::cin, wejscie);
-    return wejscie;
-}
-
 void UzytkownikMenedzer::rejestracjaUzytkownika() {
     Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();
 
@@ -64,7 +59,7 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
     std::string login = "", haslo = "";
 
     std::cout << std::endl << "Podaj login: ";
-    login = wczytajLinie();
+    login = MetodyPomocnicze::wczytajLinie();
 
     std::vector <Uzytkownik>::iterator itr = uzytkownicy.begin();
     while (itr != uzytkownicy.end())
@@ -74,7 +69,7 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
             for (int iloscProb = 3; iloscProb > 0; iloscProb--)
             {
                 std::cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
-                haslo = wczytajLinie();
+                haslo = MetodyPomocnicze::wczytajLinie();
 
                 if (itr -> pobierzHaslo() == haslo)
                 {
@@ -109,7 +104,7 @@ void UzytkownikMenedzer::wylogujUzytkownika() {
 void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     std::string noweHaslo = "";
     std::cout << "Podaj nowe haslo: ";
-    noweHaslo = wczytajLinie();
+    noweHaslo = MetodyPomocnicze::wczytajLinie();
 
     for (std::vector<Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++) {
         if (itr -> pobierzId() == idZalogowanegoUzytkownika) {

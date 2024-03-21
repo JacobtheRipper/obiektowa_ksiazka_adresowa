@@ -3,6 +3,7 @@
 
 #include<vector>
 #include "UzytkownikMenedzer.h"
+#include "AdresatMenedzer.h"
 #include "InterfejsUzytkownika.h"
 
 class KsiazkaAdresowa {
@@ -10,6 +11,7 @@ private:
     int idOstatniegoAdresata;
     int idUsunietegoAdresata;
     UzytkownikMenedzer uzytkownikMenedzer;
+    AdresatMenedzer adresatMenedzer;
     InterfejsUzytkownika interfejsUzytkownika;
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
