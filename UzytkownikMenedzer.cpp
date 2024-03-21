@@ -106,6 +106,21 @@ void UzytkownikMenedzer::wylogujUzytkownika() {
     ustawIdZalogowanegoUzytkownika(0);
 };
 
+void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
+    std::string noweHaslo = "";
+    std::cout << "Podaj nowe haslo: ";
+    noweHaslo = wczytajLinie();
+
+    for (std::vector<Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++) {
+        if (itr -> pobierzId() == idZalogowanegoUzytkownika) {
+            itr -> ustawHaslo(noweHaslo);
+            std::cout << "Haslo zostalo zmienione." << std::endl << std::endl;
+            std::system("pause");
+        }
+    }
+    plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+
 void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
     if (noweId >= 0) {
         idZalogowanegoUzytkownika = noweId;

@@ -31,6 +31,10 @@ void KsiazkaAdresowa::wylogujUzytkownika() {
     uzytkownikMenedzer.wylogujUzytkownika();
 }
 
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
+    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+}
+
 void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
     char wybor;
 
@@ -97,9 +101,7 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
                 //edytujAdresata(adresaci);
                 break;
             case '7':
-                std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
-                std::system("pause");
-                //zmianaHaslaZalogowanegoUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
+                zmianaHaslaZalogowanegoUzytkownika();
                 break;
             case '8':
                 wylogujUzytkownika();
