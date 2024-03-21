@@ -102,6 +102,10 @@ void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
     }
 }
 
+void UzytkownikMenedzer::wylogujUzytkownika() {
+    ustawIdZalogowanegoUzytkownika(0);
+};
+
 void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
     if (noweId >= 0) {
         idZalogowanegoUzytkownika = noweId;

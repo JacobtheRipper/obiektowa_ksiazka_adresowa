@@ -27,6 +27,10 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
     uzytkownikMenedzer.wypiszWszystkichUzytkownikow();
 }
 
+void KsiazkaAdresowa::wylogujUzytkownika() {
+    uzytkownikMenedzer.wylogujUzytkownika();
+}
+
 void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
     char wybor;
 
@@ -98,8 +102,12 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
                 //zmianaHaslaZalogowanegoUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
                 break;
             case '8':
-                uzytkownikMenedzer.ustawIdZalogowanegoUzytkownika(0);
+                wylogujUzytkownika();
                 //adresaci.clear();
+                break;
+            default:
+                std::cout << std::endl << "Nie ma takiej opcji w menu." << std::endl << std::endl;
+                std::system("pause");
                 break;
             }
         }
