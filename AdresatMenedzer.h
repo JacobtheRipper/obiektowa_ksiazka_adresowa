@@ -3,15 +3,18 @@
 
 #include<vector>
 #include "Adresat.h"
+#include "AdresaciPlikMenedzer.h"
 
 class AdresatMenedzer {
 private:
     int idOstatniegoAdresata;
     std::vector<Adresat> adresaci;
+    AdresaciPlikMenedzer adresaciPlikMenedzer;
+
     Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika);
     void wyswietlDaneAdresata(Adresat adresat);
 public:
-    AdresatMenedzer();
+    AdresatMenedzer(std::string nazwaPlikuZAdresatami);
     ~AdresatMenedzer();
     void dodajAdresata(int idZalogowanegoUzytkownika);
     void wypiszWszystkichAdresatow();

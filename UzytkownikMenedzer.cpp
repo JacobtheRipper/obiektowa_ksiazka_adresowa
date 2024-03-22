@@ -2,9 +2,9 @@
 #include "UzytkownikMenedzer.h"
 #include "MetodyPomocnicze.h"
 
-UzytkownikMenedzer::UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami, std::string nazwaPlikuZAdresatami)
-    : plikMenedzer(nazwaPlikuZUzytkownikami, nazwaPlikuZAdresatami) {
-    uzytkownicy = plikMenedzer.wczytajUzytkownikowZPliku();
+UzytkownikMenedzer::UzytkownikMenedzer(std::string nazwaPlikuZUzytkownikami)
+    : uzytkownicyPlikMenedzer(nazwaPlikuZUzytkownikami) {
+    uzytkownicy = uzytkownicyPlikMenedzer.wczytajUzytkownikowZPliku();
     idZalogowanegoUzytkownika = 0;
 }
 
@@ -49,7 +49,7 @@ void UzytkownikMenedzer::rejestracjaUzytkownika() {
     Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();
 
     uzytkownicy.push_back(uzytkownik);
-    plikMenedzer.dopiszUzytkownikaDoPliku(uzytkownik);
+    uzytkownicyPlikMenedzer.dopiszUzytkownikaDoPliku(uzytkownik);
 
     std::cout << std::endl << "Konto zalozono pomyslnie" << std::endl << std::endl;
     system("pause");
@@ -114,7 +114,7 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
             std::system("pause");
         }
     }
-    plikMenedzer.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+    uzytkownicyPlikMenedzer.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
 }
 
 void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {

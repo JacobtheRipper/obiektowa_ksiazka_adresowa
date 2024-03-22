@@ -2,7 +2,7 @@
 #include "KsiazkaAdresowa.h"
 
 KsiazkaAdresowa::KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami, std::string nazwaPlikuZAdresatami)
-    : uzytkownikMenedzer(nazwaPlikuZUzytkownikami, nazwaPlikuZAdresatami) {
+    : uzytkownikMenedzer(nazwaPlikuZUzytkownikami), adresatMenedzer(nazwaPlikuZAdresatami) {
 }
 
 KsiazkaAdresowa::~KsiazkaAdresowa() {

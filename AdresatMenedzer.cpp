@@ -2,7 +2,9 @@
 #include "AdresatMenedzer.h"
 #include "MetodyPomocnicze.h"
 
-AdresatMenedzer::AdresatMenedzer() {
+AdresatMenedzer::AdresatMenedzer(std::string nazwaPlikuZAdresatami)
+    : adresaciPlikMenedzer(nazwaPlikuZAdresatami) {
+    //adresaci = ;
     idOstatniegoAdresata = 0;
 }
 

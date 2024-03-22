@@ -1,16 +1,16 @@
 #include <iostream>
 #include <fstream>
-#include "PlikMenedzer.h"
+#include "UzytkownicyPlikMenedzer.h"
 #include "MetodyPomocnicze.h"
 
-PlikMenedzer::PlikMenedzer(std::string nazwaPlikuZUzytkownikami, std::string nazwaPlikuZAdresatami)
-    : nazwaPlikuZUzytkownikami(nazwaPlikuZUzytkownikami), nazwaPlikuZAdresatami(nazwaPlikuZAdresatami) {
+UzytkownicyPlikMenedzer::UzytkownicyPlikMenedzer(std::string nazwaPlikuZUzytkownikami)
+    : nazwaPlikuZUzytkownikami(nazwaPlikuZUzytkownikami) {
 }
 
-PlikMenedzer::~PlikMenedzer() {
+UzytkownicyPlikMenedzer::~UzytkownicyPlikMenedzer() {
 }
 
-void PlikMenedzer::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
+void UzytkownicyPlikMenedzer::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     std::string liniaZDanymiUzytkownika = "";
     std::fstream plikTekstowy;
 
@@ -31,7 +31,7 @@ void PlikMenedzer::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     plikTekstowy.close();
 }
 
-std::vector<Uzytkownik> PlikMenedzer::wczytajUzytkownikowZPliku() {
+std::vector<Uzytkownik> UzytkownicyPlikMenedzer::wczytajUzytkownikowZPliku() {
     Uzytkownik uzytkownik;
     std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
     std::vector<Uzytkownik> uzytkownicy;
@@ -51,7 +51,7 @@ std::vector<Uzytkownik> PlikMenedzer::wczytajUzytkownikowZPliku() {
     return uzytkownicy;
 }
 
-void PlikMenedzer::zapiszWszystkichUzytkownikowDoPliku(std::vector<Uzytkownik> &uzytkownicy) {
+void UzytkownicyPlikMenedzer::zapiszWszystkichUzytkownikowDoPliku(std::vector<Uzytkownik> &uzytkownicy) {
     std::fstream plikTekstowy;
     std::string liniaZDanymiUzytkownika = "";
     std::vector<Uzytkownik>::iterator itrKoniec = --uzytkownicy.end();
@@ -77,7 +77,7 @@ void PlikMenedzer::zapiszWszystkichUzytkownikowDoPliku(std::vector<Uzytkownik> &
     plikTekstowy.close();
 };
 
-bool PlikMenedzer::czyPlikJestPusty(std::fstream &plikTekstowy) {
+bool UzytkownicyPlikMenedzer::czyPlikJestPusty(std::fstream &plikTekstowy) {
     plikTekstowy.seekg(0, std::ios::end);
     if (plikTekstowy.tellg() == 0)
         return true;
@@ -85,7 +85,7 @@ bool PlikMenedzer::czyPlikJestPusty(std::fstream &plikTekstowy) {
         return false;
 }
 
-std::string PlikMenedzer::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
+std::string UzytkownicyPlikMenedzer::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
     std::string liniaZDanymiUzytkownika = "";
 
     liniaZDanymiUzytkownika += MetodyPomocnicze::konwersjaIntNaString(uzytkownik.pobierzId()) + '|';
@@ -95,7 +95,7 @@ std::string PlikMenedzer::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymi
     return liniaZDanymiUzytkownika;
 }
 
-Uzytkownik PlikMenedzer::pobierzDaneUzytkownika(std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
+Uzytkownik UzytkownicyPlikMenedzer::pobierzDaneUzytkownika(std::string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
     Uzytkownik uzytkownik;
     std::string pojedynczaDanaUzytkownika = "";
     int numerPojedynczejDanejUzytkownika = 1;
