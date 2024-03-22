@@ -15,6 +15,7 @@ public:
     ~AdresatMenedzer();
     void dodajAdresata(int idZalogowanegoUzytkownika);
     void wypiszWszystkichAdresatow();
+    bool czySaAdresaci();
 
     void ustawIdOstatniegoAdresata(int noweId);
     int pobierzIdOstatniegoAdresata();

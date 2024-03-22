@@ -72,6 +72,10 @@ void AdresatMenedzer::wypiszWszystkichAdresatow() {
     std::system("pause");
 }
 
+bool AdresatMenedzer::czySaAdresaci() {
+    return !adresaci.empty();
+}
+
 void AdresatMenedzer::ustawIdOstatniegoAdresata (int noweId) {
     if (noweId >= 0) {
         idOstatniegoAdresata = noweId;

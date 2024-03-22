@@ -10,19 +10,21 @@ class KsiazkaAdresowa {
 private:
     int idOstatniegoAdresata;
     int idUsunietegoAdresata;
+
     UzytkownikMenedzer uzytkownikMenedzer;
     AdresatMenedzer adresatMenedzer;
     InterfejsUzytkownika interfejsUzytkownika;
+    
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
-public:
-    KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami);
-    ~KsiazkaAdresowa();
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wylogujUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
+public:
+    KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami, std::string nazwaPlikuZAdresatami);
+    ~KsiazkaAdresowa();
     void uruchomPetleGlownaProgramu();
 };
 
