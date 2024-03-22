@@ -14,7 +14,7 @@ void Adresat::ustawId(int noweId) {
 
 void Adresat::ustawIdUzytkownika(int noweId) {
     if (noweId >= 0) {
-        id = noweId;
+        idUzytkownika = noweId;
     }
 }
 

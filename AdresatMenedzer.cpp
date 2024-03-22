@@ -3,6 +3,7 @@
 #include "MetodyPomocnicze.h"
 
 AdresatMenedzer::AdresatMenedzer() {
+    idOstatniegoAdresata = 0;
 }
 
 AdresatMenedzer::~AdresatMenedzer() {
@@ -11,7 +12,7 @@ AdresatMenedzer::~AdresatMenedzer() {
 Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) {
     Adresat adresat;
 
-    adresat.ustawId(++idOstatniegoAdresata);
+    adresat.ustawId(idOstatniegoAdresata);
     adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
 
     std::cout << "Podaj imie: ";
@@ -48,12 +49,11 @@ void AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika) {
 
     std::system("cls");
     std::cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << std::endl << std::endl;
+    ++idOstatniegoAdresata;
     adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika);
 
     adresaci.push_back(adresat);
     //dopiszAdresataDoPliku(adresat);
-
-    ++idOstatniegoAdresata;
 }
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
