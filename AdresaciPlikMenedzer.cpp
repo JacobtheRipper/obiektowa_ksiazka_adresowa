@@ -32,11 +32,10 @@ void AdresaciPlikMenedzer::dopiszAdresataDoPliku(Adresat adresat) {
     std::system("pause");
 }
 
-int AdresaciPlikMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(std::vector<Adresat> &adresaci, int idZalogowanegoUzytkownika) {
+std::vector<Adresat> AdresaciPlikMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika) {
     Adresat adresat;
-    int idOstatniegoAdresata = 0;
     std::string daneJednegoAdresataOddzielonePionowymiKreskami = "";
-    std::string daneOstaniegoAdresataWPliku = "";
+    std::vector<Adresat> adresaci;
     std::fstream plikTekstowy;
     plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), std::ios::in);
 
@@ -47,19 +46,33 @@ int AdresaciPlikMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(std::vec
                 adresaci.push_back(adresat);
             }
         }
+    }
+
+    plikTekstowy.close();
+
+    return adresaci;
+}
+
+int AdresaciPlikMenedzer::wczytajIdOstatniegoAdresataZPliku() {
+    int idOstatniegoAdresata = 0;
+    std::string daneJednegoAdresataOddzielonePionowymiKreskami = "";
+    std::string daneOstaniegoAdresataWPliku = "";
+    std::fstream plikTekstowy;
+    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), std::ios::in);
+
+    if (plikTekstowy.good() == true) {
+        while (std::getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
+        }
         daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
     }
-    else
-        std::cout << "Nie udalo sie otworzyc pliku i wczytac danych." << std::endl;
-
     plikTekstowy.close();
 
     if (daneOstaniegoAdresataWPliku != "") {
         idOstatniegoAdresata = MetodyPomocnicze::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
         return idOstatniegoAdresata;
     }
-    else
-        return 0;
+
+    return 0;
 }
 
 bool AdresaciPlikMenedzer::czyPlikJestPusty(std::fstream &plikTekstowy) {

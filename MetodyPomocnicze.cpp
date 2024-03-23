@@ -53,10 +53,10 @@ int MetodyPomocnicze::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(std:
 }
 
 std::string MetodyPomocnicze::pobierzLiczbe(std::string tekst, int pozycjaZnaku) {
-    std::string liczba = "";
-    while(isdigit(tekst[pozycjaZnaku]) == true) {
-        liczba += tekst[pozycjaZnaku];
-        pozycjaZnaku ++;
+    std::string liczba = std::string("");
+    while(isdigit(tekst[pozycjaZnaku]) != 0) {
+        liczba.push_back(tekst[pozycjaZnaku]);
+        pozycjaZnaku++;
     }
     return liczba;
 }

@@ -22,6 +22,9 @@ void KsiazkaAdresowa::rejestracjaUzytkownika() {
 
 void KsiazkaAdresowa::logowanieUzytkownika() {
     uzytkownikMenedzer.ustawIdZalogowanegoUzytkownika(uzytkownikMenedzer.logowanieUzytkownika());
+    if (uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika() != 0) {
+        adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownika(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+    }
 }
 
 void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
@@ -30,6 +33,7 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
 
 void KsiazkaAdresowa::wylogujUzytkownika() {
     uzytkownikMenedzer.wylogujUzytkownika();
+    adresatMenedzer.usunAdresatowPrzyWylogowaniu();
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
@@ -60,20 +64,10 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
             }
         }
         else {
-
-            //if (adresaci.empty() == true)
-                // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
-                // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
-                // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
-                //idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-
             wybor = wybierzOpcjeZMenuUzytkownika();
 
             switch (wybor) {
             case '1':
-                //std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
-                //std::system("pause");
-                //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
                 adresatMenedzer.dodajAdresata(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '2':
@@ -87,8 +81,6 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
                 //wyszukajAdresatowPoNazwisku(adresaci);
                 break;
             case '4':
-                //std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
-                //std::system("pause");
                 adresatMenedzer.wypiszWszystkichAdresatow();
                 break;
             case '5':
@@ -107,7 +99,6 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
                 break;
             case '8':
                 wylogujUzytkownika();
-                //adresaci.clear();
                 break;
             default:
                 std::cout << std::endl << "Nie ma takiej opcji w menu." << std::endl << std::endl;

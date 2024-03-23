@@ -16,9 +16,11 @@ private:
 public:
     AdresatMenedzer(std::string nazwaPlikuZAdresatami);
     ~AdresatMenedzer();
+    void wczytajAdresatowZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
     void dodajAdresata(int idZalogowanegoUzytkownika);
     void wypiszWszystkichAdresatow();
     bool czySaAdresaci();
+    void usunAdresatowPrzyWylogowaniu();
 
     void ustawIdOstatniegoAdresata(int noweId);
     int pobierzIdOstatniegoAdresata();

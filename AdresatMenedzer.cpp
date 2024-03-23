@@ -4,7 +4,6 @@
 
 AdresatMenedzer::AdresatMenedzer(std::string nazwaPlikuZAdresatami)
     : adresaciPlikMenedzer(nazwaPlikuZAdresatami) {
-    //adresaci = ;
     idOstatniegoAdresata = 0;
 }
 
@@ -46,6 +45,11 @@ void AdresatMenedzer::wyswietlDaneAdresata(Adresat adresat) {
     std::cout << "Adres:              " << adresat.pobierzAdres() << std::endl;
 }
 
+void AdresatMenedzer::wczytajAdresatowZalogowanegoUzytkownika(int idZalogowanegoUzytkownika) {
+    adresaci = adresaciPlikMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
+    idOstatniegoAdresata = adresaciPlikMenedzer.wczytajIdOstatniegoAdresataZPliku();
+}
+
 void AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika) {
     Adresat adresat;
 
@@ -55,7 +59,7 @@ void AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika) {
     adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika);
 
     adresaci.push_back(adresat);
-    //dopiszAdresataDoPliku(adresat);
+    adresaciPlikMenedzer.dopiszAdresataDoPliku(adresat);
 }
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
@@ -76,6 +80,11 @@ void AdresatMenedzer::wypiszWszystkichAdresatow() {
 
 bool AdresatMenedzer::czySaAdresaci() {
     return !adresaci.empty();
+}
+
+void AdresatMenedzer::usunAdresatowPrzyWylogowaniu() {
+    adresaci.clear();
+    idOstatniegoAdresata = 0;
 }
 
 void AdresatMenedzer::ustawIdOstatniegoAdresata (int noweId) {

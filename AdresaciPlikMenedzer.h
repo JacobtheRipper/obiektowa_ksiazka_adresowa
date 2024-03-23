@@ -17,7 +17,8 @@ public:
     AdresaciPlikMenedzer(std::string nazwaPlikuZAdresatami);
     ~AdresaciPlikMenedzer();
     void dopiszAdresataDoPliku(Adresat adresat);
-    int wczytajAdresatowZalogowanegoUzytkownikaZPliku(std::vector<Adresat> &adresaci, int idZalogowanegoUzytkownika);
+    std::vector<Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    int wczytajIdOstatniegoAdresataZPliku();
 };
 
 #endif
