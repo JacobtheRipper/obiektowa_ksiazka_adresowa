@@ -8,7 +8,7 @@
 
 class UzytkownicyPlikMenedzer {
 private:
-    const std::string nazwaPlikuZUzytkownikami;
+    const std::string NAZWA_PLIKU_Z_UZYTKOWNIKAMI;
     
     bool czyPlikJestPusty(std::fstream &plikTekstowy);
     std::string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);

@@ -14,6 +14,9 @@ private:
     std::string adres;
 public:
     Adresat();
+    Adresat(int id, int idUzytkownika = 0, std::string imie = "",
+        std::string nazwisko = "", std::string numerTelefonu = "",
+        std::string email = "", std::string adres = "");
     ~Adresat();
 
     void ustawId(int noweId);

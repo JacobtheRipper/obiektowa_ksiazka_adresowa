@@ -2,10 +2,13 @@
 #include "KsiazkaAdresowa.h"
 
 KsiazkaAdresowa::KsiazkaAdresowa(std::string nazwaPlikuZUzytkownikami, std::string nazwaPlikuZAdresatami)
-    : uzytkownikMenedzer(nazwaPlikuZUzytkownikami), adresatMenedzer(nazwaPlikuZAdresatami) {
+    : uzytkownikMenedzer(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {
+        adresatMenedzer = nullptr;
 }
 
 KsiazkaAdresowa::~KsiazkaAdresowa() {
+    delete adresatMenedzer;
+    adresatMenedzer = nullptr;
 }
 
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
@@ -21,9 +24,10 @@ void KsiazkaAdresowa::rejestracjaUzytkownika() {
 }
 
 void KsiazkaAdresowa::logowanieUzytkownika() {
-    uzytkownikMenedzer.ustawIdZalogowanegoUzytkownika(uzytkownikMenedzer.logowanieUzytkownika());
+    uzytkownikMenedzer.logowanieUzytkownika();
     if (uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika() != 0) {
-        adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownika(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+        adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI);
+        adresatMenedzer -> wczytajAdresatowZalogowanegoUzytkownika(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
     }
 }
 
@@ -33,7 +37,9 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
 
 void KsiazkaAdresowa::wylogujUzytkownika() {
     uzytkownikMenedzer.wylogujUzytkownika();
-    adresatMenedzer.usunAdresatowPrzyWylogowaniu();
+    adresatMenedzer -> usunAdresatowPrzyWylogowaniu();
+    delete adresatMenedzer;
+    adresatMenedzer = nullptr;
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
@@ -68,7 +74,7 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
 
             switch (wybor) {
             case '1':
-                adresatMenedzer.dodajAdresata(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+                adresatMenedzer -> dodajAdresata(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '2':
                 std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;
@@ -81,7 +87,7 @@ void KsiazkaAdresowa::uruchomPetleGlownaProgramu() {
                 //wyszukajAdresatowPoNazwisku(adresaci);
                 break;
             case '4':
-                adresatMenedzer.wypiszWszystkichAdresatow();
+                adresatMenedzer -> wypiszWszystkichAdresatow();
                 break;
             case '5':
                 std::cout << "Funkcjonalnosc w trakcie realizacji" << std::endl;

@@ -8,7 +8,7 @@
 
 class AdresaciPlikMenedzer {
 private:
-    const std::string nazwaPlikuZAdresatami;
+    const std::string NAZWA_PLIKU_Z_ADRESATAMI;
     
     bool czyPlikJestPusty(std::fstream &plikTekstowy);
     std::string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);

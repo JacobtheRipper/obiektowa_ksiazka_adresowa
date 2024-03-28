@@ -12,8 +12,10 @@ private:
     int idUsunietegoAdresata;
 
     UzytkownikMenedzer uzytkownikMenedzer;
-    AdresatMenedzer adresatMenedzer;
+    AdresatMenedzer *adresatMenedzer;
     InterfejsUzytkownika interfejsUzytkownika;
+
+    const std::string NAZWA_PLIKU_Z_ADRESATAMI;
     
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();

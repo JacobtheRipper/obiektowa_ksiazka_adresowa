@@ -75,8 +75,9 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                 if (itr -> pobierzHaslo() == haslo)
                 {
                     std::cout << std::endl << "Zalogowales sie." << std::endl << std::endl;
+                    ustawIdZalogowanegoUzytkownika(itr -> pobierzId());
                     std::system("pause");
-                    return itr -> pobierzId();
+                    return idZalogowanegoUzytkownika;
                 }
             }
             std::cout << "Wprowadzono 3 razy bledne haslo." << std::endl;
