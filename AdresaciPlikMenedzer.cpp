@@ -4,7 +4,7 @@
 #include "MetodyPomocnicze.h"
 
 AdresaciPlikMenedzer::AdresaciPlikMenedzer(std::string nazwaPlikuZAdresatami)
-    : nazwaPlikuZAdresatami(nazwaPlikuZAdresatami) {
+    : NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {
 }
 
 AdresaciPlikMenedzer::~AdresaciPlikMenedzer() {
@@ -13,7 +13,7 @@ AdresaciPlikMenedzer::~AdresaciPlikMenedzer() {
 void AdresaciPlikMenedzer::dopiszAdresataDoPliku(Adresat adresat) {
     std::string liniaZDanymiAdresata = "";
     std::fstream plikTekstowy;
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), std::ios::out | std::ios::app);
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), std::ios::out | std::ios::app);
 
     if (plikTekstowy.good() == true) {
         liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
@@ -37,7 +37,7 @@ std::vector<Adresat> AdresaciPlikMenedzer::wczytajAdresatowZalogowanegoUzytkowni
     std::string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     std::vector<Adresat> adresaci;
     std::fstream plikTekstowy;
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), std::ios::in);
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), std::ios::in);
 
     if (plikTekstowy.good() == true) {
         while (std::getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
@@ -58,7 +58,7 @@ int AdresaciPlikMenedzer::wczytajIdOstatniegoAdresataZPliku() {
     std::string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     std::string daneOstaniegoAdresataWPliku = "";
     std::fstream plikTekstowy;
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), std::ios::in);
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), std::ios::in);
 
     if (plikTekstowy.good() == true) {
         while (std::getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {

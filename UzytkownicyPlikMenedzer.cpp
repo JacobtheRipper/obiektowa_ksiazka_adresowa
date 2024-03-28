@@ -4,7 +4,7 @@
 #include "MetodyPomocnicze.h"
 
 UzytkownicyPlikMenedzer::UzytkownicyPlikMenedzer(std::string nazwaPlikuZUzytkownikami)
-    : nazwaPlikuZUzytkownikami(nazwaPlikuZUzytkownikami) {
+    : NAZWA_PLIKU_Z_UZYTKOWNIKAMI(nazwaPlikuZUzytkownikami) {
 }
 
 UzytkownicyPlikMenedzer::~UzytkownicyPlikMenedzer() {
@@ -14,7 +14,7 @@ void UzytkownicyPlikMenedzer::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     std::string liniaZDanymiUzytkownika = "";
     std::fstream plikTekstowy;
 
-    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::app);
+    plikTekstowy.open(NAZWA_PLIKU_Z_UZYTKOWNIKAMI.c_str(), std::ios::app);
 
     if (plikTekstowy.good() == true) {
         liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
@@ -27,7 +27,7 @@ void UzytkownicyPlikMenedzer::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
         }
     }
     else
-        std::cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << std::endl;
+        std::cout << "Nie udalo sie otworzyc pliku " << NAZWA_PLIKU_Z_UZYTKOWNIKAMI << " i zapisac w nim danych." << std::endl;
     plikTekstowy.close();
 }
 
@@ -37,7 +37,7 @@ std::vector<Uzytkownik> UzytkownicyPlikMenedzer::wczytajUzytkownikowZPliku() {
     std::vector<Uzytkownik> uzytkownicy;
     std::fstream plikTekstowy;
 
-    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::in);
+    plikTekstowy.open(NAZWA_PLIKU_Z_UZYTKOWNIKAMI.c_str(), std::ios::in);
 
     if (plikTekstowy.good() == true) {
         while (getline(plikTekstowy, daneJednegoUzytkownikaOddzielonePionowymiKreskami)) {
@@ -56,7 +56,7 @@ void UzytkownicyPlikMenedzer::zapiszWszystkichUzytkownikowDoPliku(std::vector<Uz
     std::string liniaZDanymiUzytkownika = "";
     std::vector<Uzytkownik>::iterator itrKoniec = --uzytkownicy.end();
 
-    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), std::ios::out);
+    plikTekstowy.open(NAZWA_PLIKU_Z_UZYTKOWNIKAMI.c_str(), std::ios::out);
 
     if (plikTekstowy.good() == true) {
         for (std::vector<Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++) {
@@ -72,7 +72,7 @@ void UzytkownicyPlikMenedzer::zapiszWszystkichUzytkownikowDoPliku(std::vector<Uz
         }
     }
     else {
-        std::cout << "Nie mozna otworzyc pliku " << nazwaPlikuZUzytkownikami << std::endl;
+        std::cout << "Nie mozna otworzyc pliku " << NAZWA_PLIKU_Z_UZYTKOWNIKAMI << std::endl;
     }
     plikTekstowy.close();
 };
