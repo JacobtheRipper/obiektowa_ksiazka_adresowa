@@ -3,6 +3,18 @@
 Adresat::Adresat() {
 }
 
+Adresat::Adresat(int id, int idUzytkownika, std::string imie,
+        std::string nazwisko, std::string numerTelefonu,
+        std::string email, std::string adres) {
+    this -> id = id;
+    this -> idUzytkownika = idUzytkownika;
+    this -> imie = imie;
+    this -> nazwisko = nazwisko;
+    this -> numerTelefonu = numerTelefonu;
+    this -> email = email;
+    this -> adres = adres;
+}
+
 Adresat::~Adresat() {
 }
 
